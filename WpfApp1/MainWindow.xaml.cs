@@ -29,7 +29,6 @@ namespace WpfApp1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //int[] nums = new int[Convert.ToInt32(groupsBox.Text)];
             List<double> nums = new List<double>();
             switch (cBox.SelectedIndex)
             {
@@ -48,6 +47,15 @@ namespace WpfApp1
                 case 4:
                     nums = Gauss();
                     break;
+                case 5:
+                    nums = Exponent(Convert.ToDouble(additionalBox1.Text));
+                    break;
+                case 6:
+                    nums = HyperExponent();
+                    break;
+                case 7:
+                    nums = Erlang();
+                    break;
             }
             var sorts = sortNums(nums);
             numsP = sorts;
@@ -61,6 +69,47 @@ namespace WpfApp1
             for (int i = 0; i < Convert.ToInt32(NumBox.Text); i++)
             {
                 randoms.Add((nr.NextDouble()*Convert.ToDouble(additionalBox1.Text)) + Convert.ToDouble(additionalBox2.Text));
+            }
+            return randoms;
+        }
+
+        private List<double> Exponent(double l)
+        {
+            List<double> randoms = new List<double>();
+            //var l = Convert.ToDouble(additionalBox1.Text);
+            Random random = new Random();
+            for (int i = 0; i < Convert.ToInt32(NumBox.Text); i++)
+            {
+                randoms.Add(((-1d / l) * Math.Log(random.NextDouble())));
+            }
+            return randoms;
+        }
+
+        private List<double> HyperExponent()
+        {
+            List<double> randoms = new List<double>();
+            randoms = Exponent(Convert.ToDouble(additionalBox1.Text));
+            List<double> randoms2 = new List<double>();
+            randoms2 = Exponent(Convert.ToDouble(additionalBox2.Text));
+            for (int i = 0; i < randoms.Count; i++) 
+            {
+                randoms[i] += randoms2[i];
+            }
+            return randoms;
+        }
+
+        private List<double> Erlang()
+        {
+            List<double> randoms = new List<double>();
+            randoms = Exponent(Convert.ToDouble(additionalBox1.Text));
+            List<double> randoms2 = new List<double>();
+            for (int j = 0; j < Convert.ToInt32(additionalBox2.Text); j++)
+            {
+                randoms2 = Exponent(Convert.ToDouble(additionalBox1.Text));
+                for (int i = 0; i < randoms.Count; i++)
+                {
+                    randoms[i] += randoms2[i];
+                }
             }
             return randoms;
         }
@@ -95,15 +144,19 @@ namespace WpfApp1
         {
             List<double> randoms = new List<double>();
             Random r = new Random();
+            int fMin = Convert.ToInt32(additionalBox1.Text);
+            int fMax = Convert.ToInt32(additionalBox2.Text);
+            int sMin = Convert.ToInt32(additionalBox3.Text);
+            int sMax = Convert.ToInt32(additionalBox4.Text);
             for (int i = 0; i < Convert.ToInt32(NumBox.Text); i++)
             {
-                randoms.Add(r.Next(400,500));
+                randoms.Add(r.Next(fMin,fMax));
             }
 
             List<double> randoms2 = new List<double>();
             for (int i = 0; i < Convert.ToInt32(NumBox.Text); i++)
             {
-                randoms2.Add(r.Next(0,300));
+                randoms2.Add(r.Next(sMin,sMax));
             }
             for (int i = 0; i< randoms.Count; i++)
                 randoms[i] += randoms2[i];
@@ -122,7 +175,6 @@ namespace WpfApp1
                 randoms.Add(Xn);
                 Xi = Xn;
             }
-            //int[] nums = sortNums(randoms);
             return randoms;
         }
 
@@ -140,7 +192,6 @@ namespace WpfApp1
                 randoms.Add(Xn);
                 Xi = Xn;
             }
-            //int[] nums = sortNums(randoms);
             return randoms;
         }
 
@@ -152,7 +203,6 @@ namespace WpfApp1
             {
                 randoms.Add(r.NextDouble());
             }
-            //int[] nums = sortNums(randoms);
             return randoms;
         }
 
@@ -209,6 +259,61 @@ namespace WpfApp1
                 showResults(numsP);
             }
             catch { }
+        }
+
+        private void CBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (cBox.SelectedIndex)
+            {
+                case 0:
+                    additionalBox1.Visibility = Visibility.Hidden;
+                    additionalBox2.Visibility = Visibility.Hidden;
+                    additionalBox3.Visibility = Visibility.Hidden;
+                    additionalBox4.Visibility = Visibility.Hidden;
+                    break;
+                case 1:
+                    additionalBox1.Visibility = Visibility.Hidden;
+                    additionalBox2.Visibility = Visibility.Hidden;
+                    additionalBox3.Visibility = Visibility.Hidden;
+                    additionalBox4.Visibility = Visibility.Hidden;
+                    break;
+                case 2:
+                    additionalBox1.Visibility = Visibility.Hidden;
+                    additionalBox2.Visibility = Visibility.Hidden;
+                    additionalBox3.Visibility = Visibility.Hidden;
+                    additionalBox4.Visibility = Visibility.Hidden;
+                    break;
+                case 3:
+                    additionalBox1.Visibility = Visibility.Visible;
+                    additionalBox2.Visibility = Visibility.Visible;
+                    additionalBox3.Visibility = Visibility.Visible;
+                    additionalBox4.Visibility = Visibility.Visible;
+                    break;
+                case 4:
+                    additionalBox1.Visibility = Visibility.Visible;
+                    additionalBox2.Visibility = Visibility.Visible;
+                    additionalBox3.Visibility = Visibility.Hidden;
+                    additionalBox4.Visibility = Visibility.Hidden;
+                    break;
+                case 5:
+                    additionalBox1.Visibility = Visibility.Visible;
+                    additionalBox2.Visibility = Visibility.Hidden;
+                    additionalBox3.Visibility = Visibility.Hidden;
+                    additionalBox4.Visibility = Visibility.Hidden;
+                    break;
+                case 6:
+                    additionalBox1.Visibility = Visibility.Visible;
+                    additionalBox2.Visibility = Visibility.Visible;
+                    additionalBox3.Visibility = Visibility.Hidden;
+                    additionalBox4.Visibility = Visibility.Hidden;
+                    break;
+                case 7:
+                    additionalBox1.Visibility = Visibility.Visible;
+                    additionalBox2.Visibility = Visibility.Visible;
+                    additionalBox3.Visibility = Visibility.Hidden;
+                    additionalBox4.Visibility = Visibility.Hidden;
+                    break;
+            }
         }
     }
 }

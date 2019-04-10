@@ -8,21 +8,26 @@
         Title="MainWindow" Height="450" Width="800" SizeChanged="WindowM_SizeChanged" ScrollViewer.HorizontalScrollBarVisibility="Visible">
     <Grid x:Name="TB9" HorizontalAlignment="Left" Width="792" ScrollViewer.HorizontalScrollBarVisibility="Visible" ShowGridLines="True">
         <Canvas Margin="91,200,116,80" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-            <Button Content="Генерировать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Click="Button_Click" Canvas.Top="28"/>
-            <TextBox x:Name="NumBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Canvas.Left="190" Canvas.Top="28"/>
-            <ComboBox x:Name="cBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Canvas.Left="315" Canvas.Top="28">
+            <Button Content="Генерировать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Click="Button_Click" Canvas.Top="38"/>
+            <TextBox x:Name="NumBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Canvas.Left="190" Canvas.Top="38"/>
+            <ComboBox x:Name="cBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Canvas.Left="315" Canvas.Top="38" SelectionChanged="CBox_SelectionChanged">
                 <ComboBoxItem Content="Встроенная функция"/>
                 <ComboBoxItem Content="Простые конгруэнции"/>
                 <ComboBoxItem Content="Метод Ленера"/>
                 <ComboBoxItem Content="Симпсон"/>
                 <ComboBoxItem Content="Гаусс"/>
+                <ComboBoxItem Content="Экспонента"/>
+                <ComboBoxItem Content="ГиперЭкспонента"/>
+                <ComboBoxItem Content="Эрланг"/>
             </ComboBox>
-            <Label Content="Число элементов" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="80" Canvas.Top="25"/>
-            <TextBox x:Name="groupsBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Canvas.Left="465" Canvas.Top="25"/>
+            <Label Content="Число элементов" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="80" Canvas.Top="35"/>
+            <TextBox x:Name="groupsBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Canvas.Left="440" Canvas.Top="38"/>
         </Canvas>
         <Canvas x:Name="canv" HorizontalAlignment="Left" Height="307" Margin="10,10,0,0" VerticalAlignment="Top" Width="772" ScrollViewer.HorizontalScrollBarVisibility="Visible"/>
-        <TextBox x:Name="additionalBox1" HorizontalAlignment="Left" Height="23" Margin="283,339,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="additionalBox2" HorizontalAlignment="Left" Height="23" Margin="408,339,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="additionalBox1" HorizontalAlignment="Left" Height="23" Margin="287,339,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
+        <TextBox x:Name="additionalBox2" HorizontalAlignment="Left" Height="23" Margin="412,339,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
+        <TextBox x:Name="additionalBox3" HorizontalAlignment="Left" Height="23" Margin="537,339,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
+        <TextBox x:Name="additionalBox4" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="662,339,0,0" Visibility="Hidden"/>
 
     </Grid>
 </Window>
