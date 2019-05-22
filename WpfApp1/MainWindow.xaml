@@ -19,6 +19,7 @@
                 <ComboBoxItem Content="Экспонента"/>
                 <ComboBoxItem Content="ГиперЭкспонента"/>
                 <ComboBoxItem Content="Эрланг"/>
+                <ComboBoxItem Content="Гаусс2"/>
             </ComboBox>
             <Label Content="Число элементов" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="80" Canvas.Top="35"/>
             <TextBox x:Name="groupsBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Canvas.Left="440" Canvas.Top="38"/>

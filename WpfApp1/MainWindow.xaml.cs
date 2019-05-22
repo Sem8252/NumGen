@@ -56,6 +56,9 @@ namespace WpfApp1
                 case 7:
                     nums = Erlang();
                     break;
+                case 8:
+                    nums = Normal();
+                    break;
             }
             var sorts = sortNums(nums);
             numsP = sorts;
@@ -73,6 +76,59 @@ namespace WpfApp1
             return randoms;
         }
 
+        private List<double> Normal()
+        {
+            List<double> randoms = new List<double>();
+            Random random = new Random();
+            for (int i = 0; i < Convert.ToInt32(NumBox.Text); i++)
+            {
+                randoms.Add(SampleGaussian(random, Convert.ToDouble(additionalBox1.Text), Convert.ToDouble(additionalBox2.Text)));
+            }
+            return randoms;
+        }
+
+        //private List<double> Normal()
+        //{
+        //    for (int i = 0; i < Convert.ToInt32(NumBox.Text); i++)
+        //    {
+        //        Random rand = new Random(); //reuse this if you are generating many
+        //        double u1 = 1.0 - rand.NextDouble(); //uniform(0,1] random doubles
+        //        double u2 = 1.0 - rand.NextDouble();
+        //        double randStdNormal = Math.Sqrt(-2.0 * Math.Log(u1)) *
+        //                     Math.Sin(2.0 * Math.PI * u2); //random normal(0,1)
+        //        double randNormal =
+        //                     mean + stdDev * randStdNormal; //random normal(mean,stdDev^2)
+        //    }
+        //}
+        //public void GaussMethod(double[] massive, double mu, double sigma, int num)
+        //{
+        //    double dSumm = 0, dRandValue = 0;
+        //    Random ran = new Random();
+        //    for (int n = 0; n <= num; n++)
+        //    {
+        //        dSumm = 0;
+        //        for (int i = 0; i <= 12; i++)
+        //        {
+        //            double R = ran.NextDouble();
+        //            dSumm = dSumm + R;
+        //        }
+        //        dRandValue = Math.Round((mu + sigma * (dSumm - 6)), 3);
+        //        massive[n] = dRandValue;
+        //    }
+
+        //}
+        public static double SampleGaussian(Random random, double mean, double stddev)
+        {
+           // Random random = new Random();
+            // The method requires sampling from a uniform random of (0,1]
+            // but Random.NextDouble() returns a sample of [0,1).
+            double x1 = 1 - random.NextDouble();
+            double x2 = 1 - random.NextDouble();
+
+            double y1 = Math.Sqrt(-2.0 * Math.Log(x1)) * Math.Cos(2.0 * Math.PI * x2);
+            return y1 * stddev + mean;
+        }
+
         private List<double> Exponent(double l)
         {
             List<double> randoms = new List<double>();
@@ -82,6 +138,8 @@ namespace WpfApp1
             {
                 randoms.Add(((-1d / l) * Math.Log(random.NextDouble())));
             }
+            //var min = randoms.Min();
+            //var max = randoms.Max();
             return randoms;
         }
 
@@ -308,6 +366,12 @@ namespace WpfApp1
                     additionalBox4.Visibility = Visibility.Hidden;
                     break;
                 case 7:
+                    additionalBox1.Visibility = Visibility.Visible;
+                    additionalBox2.Visibility = Visibility.Visible;
+                    additionalBox3.Visibility = Visibility.Hidden;
+                    additionalBox4.Visibility = Visibility.Hidden;
+                    break;
+                case 8:
                     additionalBox1.Visibility = Visibility.Visible;
                     additionalBox2.Visibility = Visibility.Visible;
                     additionalBox3.Visibility = Visibility.Hidden;
